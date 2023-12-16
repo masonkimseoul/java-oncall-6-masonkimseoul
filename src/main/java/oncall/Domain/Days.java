@@ -40,4 +40,22 @@ public enum Days {
         }
         return false;
     }
+
+    public static String fromDayIndex(int index) {
+        for (Days day : Days.values()) {
+            if (day.getDayIndex() == index) {
+                return day.dayName;
+            }
+        }
+        return null;
+    }
+
+    public static int getIndexByName(String name) {
+        for (Days day : Days.values()) {
+            if (day.getDayName().equals(name)) {
+                return day.getDayIndex();
+            }
+        }
+        return -1;
+    }
 }

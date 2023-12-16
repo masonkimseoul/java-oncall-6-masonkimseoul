@@ -28,13 +28,13 @@ public class Workers {
         return this.offDayWorkers.get(0);
     }
 
-    private String popWeekDayWorker() {
+    public String popWeekDayWorker() {
         String workerName = getWeekDayWorker();
         this.weekDayWorkers.remove(0);
         return workerName;
     }
 
-    private String popOffDayWorker() {
+    public String popOffDayWorker() {
         String workerName = getOffDayWorker();
         this.offDayWorkers.remove(0);
         return workerName;
