@@ -19,14 +19,10 @@ public class InputView {
     }
 
     public static String[] getWeekDayWorkersNames() {
-        String[] weekDayWorkersNames = Console.readLine().split(SEPARATOR);
-        //Validation
-        return weekDayWorkersNames;
+        return Console.readLine().split(SEPARATOR);
     }
 
     public static String[] getOffDayWorkersNames() {
-        String[] offDayWorkersNames = Console.readLine().split(SEPARATOR);
-        //Validation
-        return offDayWorkersNames;
+        return Console.readLine().split(SEPARATOR);
     }
 }

@@ -64,29 +64,43 @@ public class OnCallController {
         }
     }
 
+    private void pushWorkerWeekDay(int i) {
+        String workerName;
+        if (Days.isDayTypeWeekday(emergencys.get(i).getDayName())
+                && !Holidays.isSpecialHoliday(emergencys.get(i).getMonth(), emergencys.get(i).getDay())) {
+            workerName = workers.getWeekDayWorker();
+            if (i > 0 && emergencys.get(i - 1).getWorkerName().equals(workerName)) {
+                workers.swapWeekDayWorker();
+                workerName = workers.getWeekDayWorker();
+            }
+            emergencys.get(i).setWorkerName(workerName);
+            workerName = workers.popWeekDayWorker();
+            workers.addWeekDayWorkers(workerName);
+        }
+    }
+
+    private void pushWorkerOffDay(int i) {
+        String workerName;
+        if (!Days.isDayTypeWeekday(emergencys.get(i).getDayName()) || Holidays.isSpecialHoliday(emergencys.get(i).getMonth(), emergencys.get(i).getDay())) {
+            workerName = workers.getOffDayWorker();
+            if (i > 0 && emergencys.get(i - 1).getWorkerName().equals(workerName)) {
+                workers.swapOffDayWorker();
+                workerName = workers.getWeekDayWorker();
+            }
+            emergencys.get(i).setWorkerName(workerName);
+            workerName = workers.popOffDayWorker();
+            workers.addOffDayWorkers(workerName);
+        }
+    }
+
     public void pushWorker() {
         for(int i = 0; i < emergencys.size(); i++) {
-            String workerName = null;
             if (Days.isDayTypeWeekday(emergencys.get(i).getDayName())
                     && !Holidays.isSpecialHoliday(emergencys.get(i).getMonth(), emergencys.get(i).getDay())) {
-                workerName = workers.getWeekDayWorker();
-                if (i > 0 && emergencys.get(i - 1).getWorkerName().equals(workerName)) {
-                    workers.swapWeekDayWorker();
-                    workerName = workers.getWeekDayWorker();
-                }
-                emergencys.get(i).setWorkerName(workerName);
-                workerName = workers.popWeekDayWorker();
-                workers.addWeekDayWorkers(workerName);
+                pushWorkerWeekDay(i);
             }
             if (!Days.isDayTypeWeekday(emergencys.get(i).getDayName()) || Holidays.isSpecialHoliday(emergencys.get(i).getMonth(), emergencys.get(i).getDay())) {
-                workerName = workers.getOffDayWorker();
-                if (i > 0 && emergencys.get(i - 1).getWorkerName().equals(workerName)) {
-                    workers.swapOffDayWorker();
-                    workerName = workers.getWeekDayWorker();
-                }
-                emergencys.get(i).setWorkerName(workerName);
-                workerName = workers.popOffDayWorker();
-                workers.addOffDayWorkers(workerName);
+                pushWorkerOffDay(i);
             }
         }
     }
