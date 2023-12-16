@@ -13,10 +13,6 @@ public class EmergencyWorks {
         workerName = null;
     }
 
-    public void addWorker(String workerName) {
-        this.workerName = workerName;
-    }
-
     public int getMonth() {
         return this.month;
     }

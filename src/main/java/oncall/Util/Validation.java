@@ -21,23 +21,23 @@ public class Validation {
         int month = Integer.parseInt(startInfo[0]);
         String dayName = startInfo[1];
         if (month < MIN_MONTH || month > MAX_MONTH) {
-            throw new IllegalArgumentException(ERROR_MSG + LINE_SEPARATOR);
+            throw new IllegalArgumentException(LINE_SEPARATOR + ERROR_MSG + LINE_SEPARATOR);
         }
         if (!dayNames.contains(dayName)) {
-            throw new IllegalArgumentException(ERROR_MSG + LINE_SEPARATOR);
+            throw new IllegalArgumentException(LINE_SEPARATOR + ERROR_MSG + LINE_SEPARATOR);
         }
     }
 
     private static void validateWorkerNameLength(String workerName) {
         if (workerName.length() > MAX_WORKER_NAME_LEN) {
-            throw new IllegalArgumentException(ERROR_MSG + LINE_SEPARATOR);
+            throw new IllegalArgumentException(LINE_SEPARATOR + ERROR_MSG + LINE_SEPARATOR);
         }
     }
 
     public static void validateWorkers(String[] workerNames) {
         int length = workerNames.length;
         if (length < MIN_WORKERS_LEN || length > MAX_WORKERS_LEN) {
-            throw new IllegalArgumentException(ERROR_MSG + LINE_SEPARATOR);
+            throw new IllegalArgumentException(LINE_SEPARATOR + ERROR_MSG + LINE_SEPARATOR);
         }
         for (String workerName : workerNames) {
             validateWorkerNameLength(workerName);
@@ -47,12 +47,12 @@ public class Validation {
     public static void validateWorkersExistence(List<String> weekDayWorkers, List<String> offDayWorkers) {
         for(String workerName : weekDayWorkers) {
             if (!offDayWorkers.contains(workerName)) {
-                throw new IllegalArgumentException(ERROR_MSG + LINE_SEPARATOR);
+                throw new IllegalArgumentException(LINE_SEPARATOR + ERROR_MSG + LINE_SEPARATOR);
             }
         }
         for(String workerName : offDayWorkers) {
             if(!weekDayWorkers.contains(workerName)) {
-                throw new IllegalArgumentException(ERROR_MSG + LINE_SEPARATOR);
+                throw new IllegalArgumentException(LINE_SEPARATOR + ERROR_MSG + LINE_SEPARATOR);
             }
         }
     }
