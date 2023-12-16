@@ -72,6 +72,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 잘못된_요일_입력_테스트() {
+        assertSimpleTest(() -> {
+            runException("4,엥");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.");
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
